@@ -33,4 +33,9 @@ public class RedisService {
         return keys.del(key)
                 .replaceWithVoid();
     }
+
+    int get(String key) {
+        return cmd.get(key);
+    }
+
 }
