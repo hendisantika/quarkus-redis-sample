@@ -4,6 +4,7 @@ import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 
 import java.util.List;
@@ -44,5 +45,11 @@ public class RedisResource {
     @Path("/{key}")
     public Data get(String key) {
         return new Data(key, service.get(key));
+    }
+
+    @PUT
+    @Path("/{key}")
+    public void increment(String key, Integer value) {
+        service.increment(key, value);
     }
 }
