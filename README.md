@@ -62,3 +62,37 @@ Easily start your Reactive RESTful Web Services
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
 
 # quarkus-redis-sample
+
+Testing the Redis Client
+
+Testing in dev mode is fairly simple when using Dev Service. Just build and start Quarkus in dev mode:
+
+```shell
+mvn clean install quarkus:dev
+```
+
+To begin with, we can start storing one key in Redis Storage:
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{"key": "sampleKey", "value": 42}' http://localhost:8080/redis
+```
+
+Then, check the list of keys with the GET command:
+
+```shell
+curl -X GET http://localhost:8080/redisc["sampleKey"]
+```
+
+Next, in our application we have not implemented a method to decrement a key. For this purpose, let’s execute the Raw
+Redis DECR command:
+
+```shell
+curl -X POST http://localhost:8080/redisc/DECR/sampleKey
+```
+
+Verify the value of the key after decrementing it:
+
+```shell
+curl -GET http://localhost:8080/redis/sampleKeyey
+{"key":"sampleKey","value":41}
+```
