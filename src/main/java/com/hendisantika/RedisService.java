@@ -4,6 +4,7 @@ import io.quarkus.redis.datasource.ReactiveRedisDataSource;
 import io.quarkus.redis.datasource.RedisDataSource;
 import io.quarkus.redis.datasource.keys.ReactiveKeyCommands;
 import io.quarkus.redis.datasource.string.StringCommands;
+import io.smallrye.mutiny.Uni;
 import jakarta.inject.Singleton;
 
 /**
@@ -26,5 +27,10 @@ public class RedisService {
         this.redisDS = redisDS;
         keys = reactiveRedisDS.key();
         cmd = redisDS.string(Integer.class);
+    }
+
+    Uni<Void> delete(String key) {
+        return keys.del(key)
+                .replaceWithVoid();
     }
 }
