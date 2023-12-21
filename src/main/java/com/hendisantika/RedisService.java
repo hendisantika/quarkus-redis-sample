@@ -45,4 +45,8 @@ public class RedisService {
     void increment(String key, int incrementBy) {
         cmd.incrby(key, incrementBy);
     }
+
+    String execute(String command, String param) {
+        return redisDS.execute(command, param).toString();
+    }
 }
