@@ -41,4 +41,8 @@ public class RedisService {
     void set(Data data) {
         cmd.set(data.key(), data.value());
     }
+
+    void increment(String key, int incrementBy) {
+        cmd.incrby(key, incrementBy);
+    }
 }
