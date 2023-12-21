@@ -1,7 +1,11 @@
 package com.hendisantika;
 
+import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,8 +17,13 @@ import jakarta.ws.rs.Path;
  * Time: 07:43
  * To change this template use File | Settings | File Templates.
  */
-@Path("/redisclient")
+@Path("/redis")
 public class RedisResource {
     @Inject
     private RedisService service;
+
+    @GET
+    public Uni<List<String>> keys() {
+        return service.keys();
+    }
 }
