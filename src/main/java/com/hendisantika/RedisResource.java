@@ -3,6 +3,7 @@ package com.hendisantika;
 import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 
 import java.util.List;
@@ -26,4 +27,11 @@ public class RedisResource {
     public Uni<List<String>> keys() {
         return service.keys();
     }
+
+    @Path("/{command}/{parameter}")
+    @POST
+    public String execute(String command, String parameter) {
+        return service.execute(command, parameter);
+    }
+
 }
