@@ -34,4 +34,10 @@ public class RedisResource {
         return service.execute(command, parameter);
     }
 
+    @POST
+    public Data create(Data data) {
+        service.set(data);
+        return data;
+    }
+
 }
