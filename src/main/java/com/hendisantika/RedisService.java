@@ -38,4 +38,7 @@ public class RedisService {
         return cmd.get(key);
     }
 
+    void set(Data data) {
+        cmd.set(data.key(), data.value());
+    }
 }
