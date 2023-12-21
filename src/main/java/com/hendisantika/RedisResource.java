@@ -40,4 +40,9 @@ public class RedisResource {
         return data;
     }
 
+    @GET
+    @Path("/{key}")
+    public Data get(String key) {
+        return new Data(key, service.get(key));
+    }
 }
