@@ -7,6 +7,8 @@ import io.quarkus.redis.datasource.string.StringCommands;
 import io.smallrye.mutiny.Uni;
 import jakarta.inject.Singleton;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : quarkus-redis-sample
@@ -48,5 +50,9 @@ public class RedisService {
 
     String execute(String command, String param) {
         return redisDS.execute(command, param).toString();
+    }
+
+    Uni<List<String>> keys() {
+        return keys.keys("*");
     }
 }
